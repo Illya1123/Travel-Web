@@ -1,0 +1,221 @@
+import React, { useState, useEffect } from 'react'
+import { MdTravelExplore, MdModeOfTravel } from 'react-icons/md'
+import { RiMenuLine } from 'react-icons/ri'
+import { IoMdClose } from 'react-icons/io'
+import { PiAirplaneTiltBold } from 'react-icons/pi'
+import { LuHotel } from 'react-icons/lu'
+import { IoCarSportOutline } from 'react-icons/io5'
+import { FaRegNewspaper } from 'react-icons/fa6'
+import { GoPeople } from 'react-icons/go'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+const Navbar = () => {
+    const [open, setOpen] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const isLoggedIn = useSelector((state) => state.isLoginReducer.isLogin)
+    const name = useSelector((state) => state.nameReducer.name)
+
+    const toggleNavbar = () => setOpen(!open)
+    const closeNavbar = () => setOpen(false)
+
+    const handleLogout = () => {
+        localStorage.clear()
+        dispatch({ type: '@INIT' })
+        navigate('/')
+    }
+
+    const handleUserRedirect = () => {
+        navigate('/profile')
+    }
+
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 100)
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    const navItems = [
+        { id: 1, name: 'Du lịch', path: '/', icon: <MdModeOfTravel /> },
+        { id: 2, name: 'Vé máy bay', path: '/ve-may-bay', icon: <PiAirplaneTiltBold /> },
+        { id: 3, name: 'Khách sạn', path: '/khach-san', icon: <LuHotel /> },
+        { id: 4, name: 'Thuê xe', path: '/thue-xe', icon: <IoCarSportOutline /> },
+        { id: 5, name: 'Tin tức', path: '/tin-tuc', icon: <FaRegNewspaper /> },
+        { id: 6, name: 'Về chúng tôi', path: '/ve-chung-toi', icon: <GoPeople /> },
+    ]
+
+    return (
+        <div
+            className={`fixed top-0 z-50 flex h-[100px] w-full items-center justify-between border-b px-4 transition-all duration-300 md:px-16 ${
+                isScrolled ? 'bg-white/90 shadow-md backdrop-blur' : 'bg-transparent'
+            }`}
+        >
+            {/* Logo + Nav */}
+            <div className="flex flex-1 items-center gap-8">
+                <Link
+                    to="/"
+                    className="flex items-center gap-2 text-2xl font-semibold text-sky-700"
+                >
+                    <MdTravelExplore size={36} />
+                    <span>Travel</span>
+                </Link>
+
+                {/* Desktop nav */}
+                <ul className="hidden gap-6 text-xl font-medium text-neutral-700 md:flex">
+                    {navItems.map((item) => (
+                        <li
+                            key={item.id}
+                            onClick={closeNavbar}
+                            className={`cursor-pointer hover:text-sky-700 ${
+                                location.pathname === item.path ? 'text-sky-700' : ''
+                            }`}
+                        >
+                            <Link
+                                className={`flex items-center gap-x-2 rounded-full border border-transparent px-4 py-2 transition duration-200 ${
+                                    location.pathname === item.path
+                                        ? 'border-sky-700 bg-sky-50 text-sky-700'
+                                        : 'text-neutral-700 hover:border-sky-700 hover:bg-sky-50 hover:text-sky-700'
+                                }`}
+                                to={item.path}
+                            >
+                                {item.icon}
+                                {item.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            {/* Actions */}
+            <div className="hidden items-center gap-4 md:flex">
+                {!isLoggedIn ? (
+                    <>
+                        <button
+                            className="px-5 py-2 text-xl text-neutral-800 transition hover:text-sky-700"
+                            onClick={() => navigate('/register')}
+                        >
+                            Đăng ký
+                        </button>
+                        <button
+                            className="rounded-full bg-neutral-800 px-6 py-2 text-xl text-white transition hover:bg-neutral-700"
+                            onClick={() => navigate('/login')}
+                        >
+                            Đăng nhập
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <button
+                            className="px-4 py-2 text-xl font-medium text-sky-700 hover:underline"
+                            onClick={handleUserRedirect}
+                        >
+                            Chào, {name}
+                        </button>
+                        <button
+                            className="rounded-full bg-red-600 px-6 py-2 text-xl text-white transition hover:bg-red-500"
+                            onClick={handleLogout}
+                        >
+                            Đăng xuất
+                        </button>
+                    </>
+                )}
+            </div>
+
+            {/* Mobile Toggle */}
+            <div className="block md:hidden">
+                <button onClick={toggleNavbar} className="text-neutral-700">
+                    <RiMenuLine size={36} />
+                </button>
+            </div>
+
+            {/* Mobile Menu */}
+            <div
+                className={`z-100 fixed right-0 top-0 h-full w-2/3 flex-col border-l border-gray-300 bg-white transition-transform duration-300 ${
+                    open ? 'translate-x-0' : 'translate-x-full'
+                }`}
+            >
+                <div className="flex items-center justify-between border-b p-4">
+                    <Link
+                        to="/"
+                        className="flex items-center gap-2 text-2xl font-semibold text-sky-700"
+                    >
+                        <MdTravelExplore size={36} />
+                        <span>Travel</span>
+                    </Link>
+                    <button onClick={closeNavbar}>
+                        <IoMdClose size={36} className="text-red-600" />
+                    </button>
+                </div>
+
+                <ul className="flex flex-col gap-4 p-4 text-xl font-medium text-neutral-800">
+                    {navItems.map((item) => (
+                        <li key={item.id} onClick={closeNavbar}>
+                            <Link
+                                to={item.path}
+                                className={`block hover:text-sky-700 ${
+                                    location.pathname === item.path ? 'text-sky-700' : ''
+                                }`}
+                            >
+                                {item.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+
+                {/* Mobile login/logout */}
+                <div className="mt-6 flex flex-col gap-2 px-4">
+                    {!isLoggedIn ? (
+                        <>
+                            <button
+                                className="w-fit cursor-pointer px-6 py-2 text-xl text-neutral-800 hover:text-sky-700"
+                                onClick={() => {
+                                    closeNavbar()
+                                    navigate('/register')
+                                }}
+                            >
+                                Đăng ký
+                            </button>
+                            <button
+                                className="w-fit cursor-pointer rounded-xl bg-neutral-800 px-6 py-2 text-xl text-white hover:bg-neutral-700"
+                                onClick={() => {
+                                    closeNavbar()
+                                    navigate('/login')
+                                }}
+                            >
+                                Đăng nhập
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <button
+                                className="w-fit px-6 py-2 text-xl font-medium text-sky-700 hover:underline"
+                                onClick={() => {
+                                    closeNavbar()
+                                    handleUserRedirect()
+                                }}
+                            >
+                                Chào, {name}
+                            </button>
+                            <button
+                                className="w-fit rounded-xl bg-red-600 px-6 py-2 text-xl text-white hover:bg-red-500"
+                                onClick={() => {
+                                    closeNavbar()
+                                    handleLogout()
+                                }}
+                            >
+                                Đăng xuất
+                            </button>
+                        </>
+                    )}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Navbar
