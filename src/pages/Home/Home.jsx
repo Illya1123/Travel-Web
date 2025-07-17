@@ -1,6 +1,5 @@
 import React from 'react'
 import './home.css'
-import video from '../../Assets/home_video.mp4'
 import { GrLocation } from 'react-icons/gr'
 import { HiFilter } from 'react-icons/hi'
 import { FiFacebook } from 'react-icons/fi'
@@ -40,11 +39,23 @@ const Home = () => {
         <>
             <section className="home">
                 <div className="overlay"></div>
-                <video src={video} typeof="video/mp4" loop autoPlay muted></video>
+                <video
+                    src="/videos/home_video.mp4"
+                    typeof="video/mp4"
+                    loop
+                    autoPlay
+                    muted
+                    preload="auto"
+                    playsInline
+                ></video>
                 <div className="homeContent container">
-                    <div className="textDiv text-center text-white mb-10">
-                        <span className="smallText block text-sm uppercase tracking-wide mb-2">Xách balo mà đi</span>
-                        <h1 className="homeTitle text-3xl md:text-5xl font-bold">Đi thật xa để trở về</h1>
+                    <div className="textDiv mb-10 text-center text-white">
+                        <span className="smallText mb-2 block text-sm uppercase tracking-wide">
+                            Xách balo mà đi
+                        </span>
+                        <h1 className="homeTitle text-3xl font-bold md:text-5xl">
+                            Đi thật xa để trở về
+                        </h1>
                     </div>
 
                     <div className="cardDiv grid">
@@ -105,7 +116,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <Main searchKeyword={searchKeyword} maxPrice={price}/>
+            <Main searchKeyword={searchKeyword} maxPrice={price} />
             {showScroll && (
                 <button className="scrollToTop" onClick={scrollToTop}>
                     <FaArrowUp />

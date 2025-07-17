@@ -52,7 +52,11 @@ const Navbar = () => {
     return (
         <div
             className={`fixed top-0 z-50 flex h-[100px] w-full items-center justify-between border-b px-4 transition-all duration-300 md:px-16 ${
-                isScrolled ? 'bg-white/90 shadow-md backdrop-blur' : 'bg-transparent'
+                open
+                    ? 'bg-white shadow-md' // Khi mở menu thì giữ nền trắng rõ ràng
+                    : isScrolled
+                      ? 'bg-white/90 shadow-md backdrop-blur'
+                      : 'bg-transparent'
             }`}
         >
             {/* Logo + Nav */}
@@ -135,7 +139,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <div
-                className={`z-100 fixed right-0 top-0 h-full w-2/3 flex-col border-l border-gray-300 bg-white transition-transform duration-300 ${
+                className={`z-1000 fixed right-0 top-0 h-[50%] w-2/3 flex-col border-l border-gray-300 bg-white transition-transform duration-300 ${
                     open ? 'translate-x-0' : 'translate-x-full'
                 }`}
             >

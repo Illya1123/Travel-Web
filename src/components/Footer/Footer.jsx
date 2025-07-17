@@ -1,8 +1,5 @@
 import React from 'react'
 import './footer.css'
-
-import footer_video from '../../Assets/footer_video.mp4'
-
 import { FiSend } from 'react-icons/fi'
 import { MdOutlineTravelExplore } from 'react-icons/md'
 import { AiOutlineTwitter } from 'react-icons/ai'
@@ -15,7 +12,15 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="videoDiv">
-                <video src={footer_video} loop autoPlay muted type="video/mp4"></video>
+                <video
+                    src="/videos/footer_video.mp4"
+                    preload="auto"
+                    playsInline
+                    loop
+                    autoPlay
+                    muted
+                    type="video/mp4"
+                ></video>
             </div>
 
             <div className="secContent container">
