@@ -30,7 +30,6 @@ input {
 
 button {
     cursor: pointer;
-    align-self: flex-end;
     padding: 0.5rem;
     color: white;
     border: none;

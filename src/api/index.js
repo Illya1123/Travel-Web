@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = `http://localhost:3000`
+const baseUrl = `http://192.168.31.228:3000`
 
 const signup = async (param) => {
     const data = {

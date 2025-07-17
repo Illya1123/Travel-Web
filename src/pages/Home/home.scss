@@ -41,7 +41,6 @@
     }
 
     .homeContent {
-        width: 50%;
         height: max-content;
         padding: 8rem 1.5rem 3rem;
         display: flex;
@@ -68,84 +67,98 @@
         }
 
         .cardDiv {
-            position: relative;
-            padding: 2rem 1rem;
-            background: var(--whiteColor);
-            border-radius: 10px;
-            gap: 1rem;
+            display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--whiteColor);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  box-sizing: border-box;
 
-            label {
-                display: block;
-                color: var(--textColor);
-                padding-bottom: 10px;
-                font-size: 13px;
-                font-weight: 500;
-            }
+            .formGroup {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
 
-            .label_total {
-                justify-content: space-between;
-                align-items: center;
-
-                .total {
+                label {
                     color: var(--textColor);
-                    font-size: 18px;
-                    padding-bottom: 10px;
-                }
-            }
-
-            .input {
-                height: 40px;
-                padding: 0 1rem;
-                background: var(--inputColor);
-                border-radius: 3rem;
-
-                input {
-                    background: none;
-                    border: none;
-                    outline: none;
-                    width: 100%;
+                    margin-bottom: 0.5rem;
                     font-size: 14px;
-                    color: black;
                     font-weight: 500;
-                    &::placeholder {
+                }
+
+                .label_total {
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 0.5rem;
+
+                    .total {
                         font-size: 14px;
+                        font-weight: bold;
+                        color: var(--textColor);
                     }
                 }
-            }
 
-            .icon {
-                font-size: 18px;
-                color: var(--PrimaryColor) !important;
-                margin-left: 10px;
-            }
+                .input {
+                    height: 44px;
+                    padding: 0 1rem;
+                    background: var(--inputColor);
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
 
-            .input[type='range'] {
-                background: blue;
+                    input {
+                        width: 100%;
+                        background: none;
+                        border: none;
+                        outline: none;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: black;
+
+                        &::placeholder {
+                            font-size: 14px;
+                        }
+                    }
+
+                    input[type='range'] {
+                        height: 3px;
+                        padding: 0;
+                        background: var(--PrimaryColor);
+                        border-radius: 5px;
+                        outline: none;
+                        cursor: pointer;
+                    }
+                }
+
+                .icon {
+                    font-size: 18px;
+                    color: var(--PrimaryColor);
+                    margin-left: 10px;
+                }
             }
 
             .searchOptions {
-                position: absolute;
                 background: var(--gradientColor);
-                width: max-content;
-                bottom: -0.7rem;
-                column-gap: 0.8rem;
-                padding: 5px 1rem;
-                border-radius: 3rem;
-                left: 50%;
-                transform: translate(-50%);
+                padding: 10px 16px;
+                border-radius: 12px;
                 justify-content: center;
+                align-items: center;
+                column-gap: 0.5rem;
                 cursor: pointer;
+                transition: background 0.3s ease;
+                height: 44px;
 
                 &:hover {
                     background: var(--PrimaryColor);
                 }
 
-                .icon {
-                    font-size: 18px;
-                }
-
                 span {
-                    font-size: 13px;
+                    font-size: 14px;
+                    font-weight: 500;
                 }
             }
         }
@@ -189,7 +202,30 @@
 
 // ✅ Sau đó có thể đến media queries nếu có
 @media (max-width: 768px) {
-    // ...
+  .homeContent {
+    width: 100%;
+    padding: 6rem 1rem;
+
+    .cardDiv {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: none;
+      box-sizing: border-box;
+    }
+
+    .formGroup {
+      width: 100%;
+
+      .input {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+  }
 }
 
 //Media queries

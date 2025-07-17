@@ -40,7 +40,6 @@
      object-fit: cover;
 }
 .home .homeContent {
-  width: 50%;
   height: -moz-max-content;
   height: max-content;
   padding: 8rem 1.5rem 3rem;
@@ -65,80 +64,92 @@
   font-size: 1.8rem;
 }
 .home .homeContent .cardDiv {
-  position: relative;
-  padding: 2rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
   background: var(--whiteColor);
-  border-radius: 10px;
-  gap: 1rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  box-sizing: border-box;
 }
-.home .homeContent .cardDiv label {
-  display: block;
+.home .homeContent .cardDiv .formGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.home .homeContent .cardDiv .formGroup label {
   color: var(--textColor);
-  padding-bottom: 10px;
-  font-size: 13px;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
   font-weight: 500;
 }
-.home .homeContent .cardDiv .label_total {
+.home .homeContent .cardDiv .formGroup .label_total {
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
-.home .homeContent .cardDiv .label_total .total {
+.home .homeContent .cardDiv .formGroup .label_total .total {
+  font-size: 14px;
+  font-weight: bold;
   color: var(--textColor);
-  font-size: 18px;
-  padding-bottom: 10px;
 }
-.home .homeContent .cardDiv .input {
-  height: 40px;
+.home .homeContent .cardDiv .formGroup .input {
+  height: 44px;
   padding: 0 1rem;
   background: var(--inputColor);
-  border-radius: 3rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
-.home .homeContent .cardDiv .input input {
+.home .homeContent .cardDiv .formGroup .input input {
+  width: 100%;
   background: none;
   border: none;
   outline: none;
-  width: 100%;
   font-size: 14px;
-  color: black;
   font-weight: 500;
+  color: black;
 }
-.home .homeContent .cardDiv .input input::-moz-placeholder {
+.home .homeContent .cardDiv .formGroup .input input::-moz-placeholder {
   font-size: 14px;
 }
-.home .homeContent .cardDiv .input input::placeholder {
+.home .homeContent .cardDiv .formGroup .input input::placeholder {
   font-size: 14px;
 }
-.home .homeContent .cardDiv .icon {
+.home .homeContent .cardDiv .formGroup .input input[type=range] {
+  height: 3px;
+  padding: 0;
+  background: var(--PrimaryColor);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.home .homeContent .cardDiv .formGroup .icon {
   font-size: 18px;
-  color: var(--PrimaryColor) !important;
+  color: var(--PrimaryColor);
   margin-left: 10px;
 }
-.home .homeContent .cardDiv .input[type=range] {
-  background: blue;
-}
 .home .homeContent .cardDiv .searchOptions {
-  position: absolute;
   background: var(--gradientColor);
-  width: -moz-max-content;
-  width: max-content;
-  bottom: -0.7rem;
-  -moz-column-gap: 0.8rem;
-       column-gap: 0.8rem;
-  padding: 5px 1rem;
-  border-radius: 3rem;
-  left: 50%;
-  transform: translate(-50%);
+  padding: 10px 16px;
+  border-radius: 12px;
   justify-content: center;
+  align-items: center;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
   cursor: pointer;
+  transition: background 0.3s ease;
+  height: 44px;
 }
 .home .homeContent .cardDiv .searchOptions:hover {
   background: var(--PrimaryColor);
 }
-.home .homeContent .cardDiv .searchOptions .icon {
-  font-size: 18px;
-}
 .home .homeContent .cardDiv .searchOptions span {
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
 }
 .home .homeContent .homeFooterIcons {
   width: 100%;
@@ -172,4 +183,27 @@
 
 .scrollToTop:hover {
   background-color: var(--SecondaryColor);
+}
+
+@media (max-width: 768px) {
+  .homeContent {
+    width: 100%;
+    padding: 6rem 1rem;
+  }
+  .homeContent .cardDiv {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+  .homeContent .formGroup {
+    width: 100%;
+  }
+  .homeContent .formGroup .input {
+    width: 100%;
+  }
+  .homeContent .formGroup input {
+    width: 100%;
+  }
 }/*# sourceMappingURL=home.css.map */

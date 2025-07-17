@@ -7,13 +7,17 @@ import { LuHotel } from 'react-icons/lu'
 import { IoCarSportOutline } from 'react-icons/io5'
 import { FaRegNewspaper } from 'react-icons/fa6'
 import { GoPeople } from 'react-icons/go'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useMediaQuery } from 'react-responsive'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
+
+    // ✅ Chỉ cần khai báo ở đây — không cần setState
+    const isMobile = useMediaQuery({ maxWidth: 1700 })
+
     const location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -23,17 +27,14 @@ const Navbar = () => {
 
     const toggleNavbar = () => setOpen(!open)
     const closeNavbar = () => setOpen(false)
-
     const handleLogout = () => {
         localStorage.clear()
         dispatch({ type: '@INIT' })
         navigate('/')
     }
+    const handleUserRedirect = () => navigate('/profile')
 
-    const handleUserRedirect = () => {
-        navigate('/profile')
-    }
-
+    // ✅ Chỉ giữ scroll listener thôi
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 100)
         window.addEventListener('scroll', handleScroll)
@@ -53,24 +54,21 @@ const Navbar = () => {
         <div
             className={`fixed top-0 z-50 flex h-[100px] w-full items-center justify-between border-b px-4 transition-all duration-300 md:px-16 ${
                 open
-                    ? 'bg-white shadow-md' // Khi mở menu thì giữ nền trắng rõ ràng
+                    ? 'bg-white shadow-md'
                     : isScrolled
                       ? 'bg-white/90 shadow-md backdrop-blur'
                       : 'bg-transparent'
             }`}
         >
-            {/* Logo + Nav */}
-            <div className="flex flex-1 items-center gap-8">
-                <Link
-                    to="/"
-                    className="flex items-center gap-2 text-2xl font-semibold text-sky-700"
-                >
-                    <MdTravelExplore size={36} />
-                    <span>Travel</span>
-                </Link>
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 text-2xl font-semibold text-sky-700">
+                <MdTravelExplore size={36} />
+                <span>Travel</span>
+            </Link>
 
-                {/* Desktop nav */}
-                <ul className="hidden gap-6 text-xl font-medium text-neutral-700 md:flex">
+            {/* Desktop Nav */}
+            {!isMobile && (
+                <ul className="ml-8 flex gap-6 text-xl font-medium text-neutral-700">
                     {navItems.map((item) => (
                         <li
                             key={item.id}
@@ -93,103 +91,22 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-            </div>
+            )}
 
             {/* Actions */}
-            <div className="hidden items-center gap-4 md:flex">
-                {!isLoggedIn ? (
-                    <>
-                        <button
-                            className="px-5 py-2 text-xl text-neutral-800 transition hover:text-sky-700"
-                            onClick={() => navigate('/register')}
-                        >
-                            Đăng ký
-                        </button>
-                        <button
-                            className="rounded-full bg-neutral-800 px-6 py-2 text-xl text-white transition hover:bg-neutral-700"
-                            onClick={() => navigate('/login')}
-                        >
-                            Đăng nhập
-                        </button>
-                    </>
-                ) : (
-                    <>
-                        <button
-                            className="px-4 py-2 text-xl font-medium text-sky-700 hover:underline"
-                            onClick={handleUserRedirect}
-                        >
-                            Chào, {name}
-                        </button>
-                        <button
-                            className="rounded-full bg-red-600 px-6 py-2 text-xl text-white transition hover:bg-red-500"
-                            onClick={handleLogout}
-                        >
-                            Đăng xuất
-                        </button>
-                    </>
-                )}
-            </div>
-
-            {/* Mobile Toggle */}
-            <div className="block md:hidden">
-                <button onClick={toggleNavbar} className="text-neutral-700">
-                    <RiMenuLine size={36} />
-                </button>
-            </div>
-
-            {/* Mobile Menu */}
-            <div
-                className={`z-1000 fixed right-0 top-0 h-[50%] w-2/3 flex-col border-l border-gray-300 bg-white transition-transform duration-300 ${
-                    open ? 'translate-x-0' : 'translate-x-full'
-                }`}
-            >
-                <div className="flex items-center justify-between border-b p-4">
-                    <Link
-                        to="/"
-                        className="flex items-center gap-2 text-2xl font-semibold text-sky-700"
-                    >
-                        <MdTravelExplore size={36} />
-                        <span>Travel</span>
-                    </Link>
-                    <button onClick={closeNavbar}>
-                        <IoMdClose size={36} className="text-red-600" />
-                    </button>
-                </div>
-
-                <ul className="flex flex-col gap-4 p-4 text-xl font-medium text-neutral-800">
-                    {navItems.map((item) => (
-                        <li key={item.id} onClick={closeNavbar}>
-                            <Link
-                                to={item.path}
-                                className={`block hover:text-sky-700 ${
-                                    location.pathname === item.path ? 'text-sky-700' : ''
-                                }`}
-                            >
-                                {item.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-
-                {/* Mobile login/logout */}
-                <div className="mt-6 flex flex-col gap-2 px-4">
+            {!isMobile ? (
+                <div className="flex items-center gap-4">
                     {!isLoggedIn ? (
                         <>
                             <button
-                                className="w-fit cursor-pointer px-6 py-2 text-xl text-neutral-800 hover:text-sky-700"
-                                onClick={() => {
-                                    closeNavbar()
-                                    navigate('/register')
-                                }}
+                                className="px-5 py-2 text-xl text-neutral-800 transition hover:text-sky-700"
+                                onClick={() => navigate('/register')}
                             >
                                 Đăng ký
                             </button>
                             <button
-                                className="w-fit cursor-pointer rounded-xl bg-neutral-800 px-6 py-2 text-xl text-white hover:bg-neutral-700"
-                                onClick={() => {
-                                    closeNavbar()
-                                    navigate('/login')
-                                }}
+                                className="rounded-full bg-neutral-800 px-6 py-2 text-xl text-white transition hover:bg-neutral-700"
+                                onClick={() => navigate('/login')}
                             >
                                 Đăng nhập
                             </button>
@@ -197,27 +114,110 @@ const Navbar = () => {
                     ) : (
                         <>
                             <button
-                                className="w-fit px-6 py-2 text-xl font-medium text-sky-700 hover:underline"
-                                onClick={() => {
-                                    closeNavbar()
-                                    handleUserRedirect()
-                                }}
+                                className="px-4 py-2 text-xl font-medium text-sky-700 hover:underline"
+                                onClick={handleUserRedirect}
                             >
                                 Chào, {name}
                             </button>
                             <button
-                                className="w-fit rounded-xl bg-red-600 px-6 py-2 text-xl text-white hover:bg-red-500"
-                                onClick={() => {
-                                    closeNavbar()
-                                    handleLogout()
-                                }}
+                                className="rounded-full bg-red-600 px-6 py-2 text-xl text-white transition hover:bg-red-500"
+                                onClick={handleLogout}
                             >
                                 Đăng xuất
                             </button>
                         </>
                     )}
                 </div>
-            </div>
+            ) : (
+                // Mobile Toggle Button
+                <button onClick={toggleNavbar} className="text-neutral-700">
+                    <RiMenuLine size={36} />
+                </button>
+            )}
+
+            {/* Mobile Menu */}
+            {isMobile && (
+    <div
+        className={`fixed inset-0 z-[1000] flex flex-col bg-white transition-transform duration-300 ${
+            open ? 'translate-x-0' : 'translate-x-full'
+        } md:hidden`}
+    >
+        <div className="flex items-center justify-between border-b p-4">
+            <Link
+                to="/"
+                className="flex items-center gap-2 text-2xl font-semibold text-sky-700"
+            >
+                <MdTravelExplore size={36} />
+                <span>Travel</span>
+            </Link>
+            <button onClick={closeNavbar}>
+                <IoMdClose size={36} className="text-red-600" />
+            </button>
+        </div>
+
+        <ul className="flex flex-col gap-4 p-4 text-xl font-medium text-neutral-800">
+            {navItems.map((item) => (
+                <li key={item.id} onClick={closeNavbar}>
+                    <Link
+                        to={item.path}
+                        className={`block hover:text-sky-700 ${
+                            location.pathname === item.path ? 'text-sky-700' : ''
+                        }`}
+                    >
+                        {item.name}
+                    </Link>
+                </li>
+            ))}
+        </ul>
+
+        <div className="mt-auto flex flex-col gap-2 px-4 pb-6">
+            {!isLoggedIn ? (
+                <>
+                    <button
+                        className="w-fit cursor-pointer px-6 py-2 text-xl text-neutral-800 hover:text-sky-700"
+                        onClick={() => {
+                            closeNavbar()
+                            navigate('/register')
+                        }}
+                    >
+                        Đăng ký
+                    </button>
+                    <button
+                        className="w-fit cursor-pointer rounded-xl bg-neutral-800 px-6 py-2 text-xl text-white hover:bg-neutral-700"
+                        onClick={() => {
+                            closeNavbar()
+                            navigate('/login')
+                        }}
+                    >
+                        Đăng nhập
+                    </button>
+                </>
+            ) : (
+                <>
+                    <button
+                        className="w-fit px-6 py-2 text-xl font-medium text-sky-700 hover:underline"
+                        onClick={() => {
+                            closeNavbar()
+                            handleUserRedirect()
+                        }}
+                    >
+                        Chào, {name}
+                    </button>
+                    <button
+                        className="w-fit rounded-xl bg-red-600 px-6 py-2 text-xl text-white hover:bg-red-500"
+                        onClick={() => {
+                            closeNavbar()
+                            handleLogout()
+                        }}
+                    >
+                        Đăng xuất
+                    </button>
+                </>
+            )}
+        </div>
+    </div>
+)}
+
         </div>
     )
 }

@@ -58,8 +58,8 @@ const Home = () => {
                         </h1>
                     </div>
 
-                    <div className="cardDiv grid">
-                        <div className="destinationInput">
+                    <div className="cardDiv">
+                        <div className="formGroup">
                             <label htmlFor="city">Tìm điểm đến:</label>
                             <div className="input flex">
                                 <input
@@ -72,14 +72,14 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="dateInput">
+                        <div className="formGroup">
                             <label htmlFor="date">Chọn ngày:</label>
                             <div className="input flex">
                                 <input type="date" />
                             </div>
                         </div>
 
-                        <div className="priceInput">
+                        <div className="formGroup">
                             <div className="label_total flex">
                                 <label htmlFor="price">Khoảng giá tối đa:</label>
                                 <h3 className="total">{formatCurrency(price)}</h3>
@@ -96,7 +96,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="searchOptions flex">
+                        <div className="formGroup searchOptions flex">
                             <HiFilter className="icon" />
                             <span>MORE FILTERS</span>
                         </div>

@@ -23,11 +23,11 @@ const Footer = () => {
                 ></video>
             </div>
 
-            <div className="secContent container">
+            <div className="secContent container z-10">
                 <div className="contactDiv flex">
-                    <div className="text">
-                        <small>CHÀO MỪNG QUÝ KHÁCH</small>
-                        <h2>Đồng hành cùng chúng tôi</h2>
+                    <div className="text-center text">
+                        <small className="text block">CHÀO MỪNG QUÝ KHÁCH</small>
+                        <h2 className="text text-2xl font-semibold">Đồng hành cùng chúng tôi</h2>
                     </div>
 
                     <div className="inputDiv flex">
