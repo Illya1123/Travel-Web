@@ -242,7 +242,7 @@ const Detail = () => {
                                     />
                                     <div className="p-3">
                                         <h4 className="font-semibold text-gray-800">{t.title}</h4>
-                                        <p className="text-sm text-red-600 font-bold">
+                                        <p className="text-sm font-bold text-red-600">
                                             Giá: {t.price.toLocaleString()} ₫
                                         </p>
                                     </div>

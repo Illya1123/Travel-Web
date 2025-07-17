@@ -68,15 +68,15 @@
 
         .cardDiv {
             display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  background: var(--whiteColor);
-  border-radius: 12px;
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-  box-sizing: border-box;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--whiteColor);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+            box-sizing: border-box;
 
             .formGroup {
                 width: 100%;
@@ -202,30 +202,30 @@
 
 // ✅ Sau đó có thể đến media queries nếu có
 @media (max-width: 768px) {
-  .homeContent {
-    width: 100%;
-    padding: 6rem 1rem;
-
-    .cardDiv {
-      grid-template-columns: 1fr;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: none;
-      box-sizing: border-box;
-    }
-
-    .formGroup {
-      width: 100%;
-
-      .input {
+    .homeContent {
         width: 100%;
-      }
+        padding: 6rem 1rem;
 
-      input {
-        width: 100%;
-      }
+        .cardDiv {
+            grid-template-columns: 1fr;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: none;
+            box-sizing: border-box;
+        }
+
+        .formGroup {
+            width: 100%;
+
+            .input {
+                width: 100%;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
     }
-  }
 }
 
 //Media queries

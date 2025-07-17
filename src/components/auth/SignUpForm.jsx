@@ -70,7 +70,7 @@ const SignUpForm = () => {
         <section className="login relative h-screen w-full">
             <div className="overlay absolute left-0 top-0 z-10 h-full w-full bg-black/40"></div>
             <video
-                src='/videos/RegisterPage_3840x2160.mp4'
+                src="/videos/RegisterPage_3840x2160.mp4"
                 type="video/mp4"
                 loop
                 autoPlay
@@ -177,8 +177,7 @@ const SignUpForm = () => {
                             type="submit"
                             disabled={!(formik.isValid && formik.dirty)}
                             className={`w-full rounded-xl bg-blue-600 p-3 text-base text-white transition hover:bg-blue-700 ${
-                                !(formik.isValid && formik.dirty) &&
-                                'cursor-not-allowed opacity-50'
+                                !(formik.isValid && formik.dirty) && 'cursor-not-allowed opacity-50'
                             }`}
                         >
                             Đăng ký

@@ -34,6 +34,21 @@ const Navbar = () => {
     }
     const handleUserRedirect = () => navigate('/profile')
 
+    const useWindowWidth = () => {
+        const [width, setWidth] = useState(window.innerWidth)
+
+        useEffect(() => {
+            const handleResize = () => setWidth(window.innerWidth)
+            window.addEventListener('resize', handleResize)
+            return () => window.removeEventListener('resize', handleResize)
+        }, [])
+
+        return width
+    }
+
+    const windowWidth = useWindowWidth()
+    const isFullScreen = windowWidth < 768
+
     // ✅ Chỉ giữ scroll listener thôi
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 100)
@@ -137,87 +152,88 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMobile && (
-    <div
-        className={`fixed inset-0 z-[1000] flex flex-col bg-white transition-transform duration-300 ${
-            open ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
-    >
-        <div className="flex items-center justify-between border-b p-4">
-            <Link
-                to="/"
-                className="flex items-center gap-2 text-2xl font-semibold text-sky-700"
-            >
-                <MdTravelExplore size={36} />
-                <span>Travel</span>
-            </Link>
-            <button onClick={closeNavbar}>
-                <IoMdClose size={36} className="text-red-600" />
-            </button>
-        </div>
+                <div
+                    className={`fixed right-0 top-0 z-[1000] h-screen ${
+                        isFullScreen ? 'w-full' : 'w-[384px]'
+                    } flex flex-col bg-white transition-transform duration-300 ${
+                        open ? 'translate-x-0' : 'translate-x-full'
+                    }`}
+                >
+                    <div className="flex items-center justify-between border-b p-4">
+                        <Link
+                            to="/"
+                            className="flex items-center gap-2 text-2xl font-semibold text-sky-700"
+                        >
+                            <MdTravelExplore size={36} />
+                            <span>Travel</span>
+                        </Link>
+                        <button onClick={closeNavbar}>
+                            <IoMdClose size={36} className="text-red-600" />
+                        </button>
+                    </div>
 
-        <ul className="flex flex-col gap-4 p-4 text-xl font-medium text-neutral-800">
-            {navItems.map((item) => (
-                <li key={item.id} onClick={closeNavbar}>
-                    <Link
-                        to={item.path}
-                        className={`block hover:text-sky-700 ${
-                            location.pathname === item.path ? 'text-sky-700' : ''
-                        }`}
-                    >
-                        {item.name}
-                    </Link>
-                </li>
-            ))}
-        </ul>
+                    <ul className="flex flex-col gap-4 p-4 text-xl font-medium text-neutral-800">
+                        {navItems.map((item) => (
+                            <li key={item.id} onClick={closeNavbar}>
+                                <Link
+                                    to={item.path}
+                                    className={`block hover:text-sky-700 ${
+                                        location.pathname === item.path ? 'text-sky-700' : ''
+                                    }`}
+                                >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
 
-        <div className="mt-auto flex flex-col gap-2 px-4 pb-6">
-            {!isLoggedIn ? (
-                <>
-                    <button
-                        className="w-fit cursor-pointer px-6 py-2 text-xl text-neutral-800 hover:text-sky-700"
-                        onClick={() => {
-                            closeNavbar()
-                            navigate('/register')
-                        }}
-                    >
-                        Đăng ký
-                    </button>
-                    <button
-                        className="w-fit cursor-pointer rounded-xl bg-neutral-800 px-6 py-2 text-xl text-white hover:bg-neutral-700"
-                        onClick={() => {
-                            closeNavbar()
-                            navigate('/login')
-                        }}
-                    >
-                        Đăng nhập
-                    </button>
-                </>
-            ) : (
-                <>
-                    <button
-                        className="w-fit px-6 py-2 text-xl font-medium text-sky-700 hover:underline"
-                        onClick={() => {
-                            closeNavbar()
-                            handleUserRedirect()
-                        }}
-                    >
-                        Chào, {name}
-                    </button>
-                    <button
-                        className="w-fit rounded-xl bg-red-600 px-6 py-2 text-xl text-white hover:bg-red-500"
-                        onClick={() => {
-                            closeNavbar()
-                            handleLogout()
-                        }}
-                    >
-                        Đăng xuất
-                    </button>
-                </>
+                    <div className="mt-auto flex flex-col gap-2 px-4 pb-6">
+                        {!isLoggedIn ? (
+                            <>
+                                <button
+                                    className="w-fit cursor-pointer px-6 py-2 text-xl text-neutral-800 hover:text-sky-700"
+                                    onClick={() => {
+                                        closeNavbar()
+                                        navigate('/register')
+                                    }}
+                                >
+                                    Đăng ký
+                                </button>
+                                <button
+                                    className="w-fit cursor-pointer rounded-xl bg-neutral-800 px-6 py-2 text-xl text-white hover:bg-neutral-700"
+                                    onClick={() => {
+                                        closeNavbar()
+                                        navigate('/login')
+                                    }}
+                                >
+                                    Đăng nhập
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <button
+                                    className="w-fit px-6 py-2 text-xl font-medium text-sky-700 hover:underline"
+                                    onClick={() => {
+                                        closeNavbar()
+                                        handleUserRedirect()
+                                    }}
+                                >
+                                    Chào, {name}
+                                </button>
+                                <button
+                                    className="w-fit rounded-xl bg-red-600 px-6 py-2 text-xl text-white hover:bg-red-500"
+                                    onClick={() => {
+                                        closeNavbar()
+                                        handleLogout()
+                                    }}
+                                >
+                                    Đăng xuất
+                                </button>
+                            </>
+                        )}
+                    </div>
+                </div>
             )}
-        </div>
-    </div>
-)}
-
         </div>
     )
 }

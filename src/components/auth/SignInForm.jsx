@@ -85,7 +85,7 @@ const SignInForm = () => {
         <section className="login relative h-screen w-full">
             <div className="overlay absolute left-0 top-0 z-10 h-full w-full bg-black/40"></div>
             <video
-                src='/videos/LoginPage_Ha_Long_Bay_3840x2160.mp4'
+                src="/videos/LoginPage_Ha_Long_Bay_3840x2160.mp4"
                 type="video/mp4"
                 loop
                 autoPlay
@@ -112,8 +112,7 @@ const SignInForm = () => {
                                 placeholder="Email address"
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
-                                className="w-full border-0 bg-transparent text-base text-white placeholder-gray-400 outline-none focus:bg-transparent focus:outline-none focus:ring-0
-"
+                                className="w-full border-0 bg-transparent text-base text-white placeholder-gray-400 outline-none focus:bg-transparent focus:outline-none focus:ring-0"
                             />
                         </div>
                         {formik.errors.email && (

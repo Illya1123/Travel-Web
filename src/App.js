@@ -28,9 +28,7 @@ const router = createBrowserRouter([
             // Các route cần đăng nhập đặt trong PrivateRoute
             {
                 element: <PrivateRoute />,
-                children: [
-                    { path: '/profile', element: <UserProfilePage /> },
-                ],
+                children: [{ path: '/profile', element: <UserProfilePage /> }],
             },
         ],
     },
@@ -39,7 +37,6 @@ const router = createBrowserRouter([
         element: <StaffManager />,
     },
 ])
-
 
 function App() {
     useEffect(() => {
