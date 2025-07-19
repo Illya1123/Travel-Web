@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getPaymentMethods } from '../../api/payment_method'
 
 const PaymentMethod = ({ selectedMethod, setSelectedMethod }) => {
-    const methods = [
-        { name: 'MoMo', disabled: false },
-        { name: 'VNPay', disabled: true },
-        { name: 'ZaloPay', disabled: true },
-        { name: 'Tiền Mặt', disabled: false },
-    ]
+    const [methods, setMethods] = useState([])
+
+    useEffect(() => {
+        const fetchMethods = async () => {
+            try {
+                const res = await getPaymentMethods()
+                if (res.status === 'success') {
+                    setMethods(res.data)
+                }
+            } catch (err) {
+                console.error('Lỗi khi tải phương thức thanh toán:', err)
+            }
+        }
+
+        fetchMethods()
+    }, [])
 
     return (
         <div className="mt-8 rounded-2xl border bg-white p-6 shadow">
