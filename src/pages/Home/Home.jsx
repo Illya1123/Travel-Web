@@ -7,7 +7,7 @@ import { AiOutlineInstagram } from 'react-icons/ai'
 import { FaTripadvisor, FaArrowUp } from 'react-icons/fa'
 import { BsListTask } from 'react-icons/bs'
 import { TbApps } from 'react-icons/tb'
-import Main from '../../components/Main/Main.jsx'
+import Main from '../../components/Main/'
 
 const Home = () => {
     const [showScroll, setShowScroll] = React.useState(false)
