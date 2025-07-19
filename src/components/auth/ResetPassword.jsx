@@ -34,25 +34,24 @@ const ResetPassword = () => {
                 .oneOf([Yup.ref('password'), null], 'Mật khẩu không khớp'),
         }),
         onSubmit: async (values) => {
-    try {
-        const res = await resetPassword({ password: values.password, token })
-        if (res.success) {
-            Swal.fire({
-                title: 'Thành công!',
-                text: 'Mật khẩu đã được đặt lại. Vui lòng đăng nhập lại.',
-                icon: 'success',
-                confirmButtonText: 'Đăng nhập',
-            }).then(() => {
-                navigate('/login')
-            })
-        } else {
-            setMessage('Lỗi: ' + (res.message || 'Không thể đổi mật khẩu.'))
-        }
-    } catch (err) {
-        setMessage('Lỗi hệ thống. Vui lòng thử lại.')
-    }
-}
-
+            try {
+                const res = await resetPassword({ password: values.password, token })
+                if (res.success) {
+                    Swal.fire({
+                        title: 'Thành công!',
+                        text: 'Mật khẩu đã được đặt lại. Vui lòng đăng nhập lại.',
+                        icon: 'success',
+                        confirmButtonText: 'Đăng nhập',
+                    }).then(() => {
+                        navigate('/login')
+                    })
+                } else {
+                    setMessage('Lỗi: ' + (res.message || 'Không thể đổi mật khẩu.'))
+                }
+            } catch (err) {
+                setMessage('Lỗi hệ thống. Vui lòng thử lại.')
+            }
+        },
     })
 
     return (
@@ -131,7 +130,9 @@ const ResetPassword = () => {
                             )}
                         </div>
                         {formik.errors.confirmPassword && (
-                            <p className="ml-2 text-sm text-red-500">{formik.errors.confirmPassword}</p>
+                            <p className="ml-2 text-sm text-red-500">
+                                {formik.errors.confirmPassword}
+                            </p>
                         )}
 
                         <button

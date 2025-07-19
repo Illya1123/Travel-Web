@@ -1,210 +1,210 @@
 :root {
-  --PrimaryColor: hsl(199, 100%, 33%);
-  --SecondaryColor: hsl(187, 85%, 43%);
-  --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
-  --whiteColor: hsl(0, 0%, 100%);
-  --blackColor: hsl(201, 33%, 16%);
-  --textColor: hsl(240, 4%, 36%);
-  --whiteColorDeam: hsl(0, 0%, 93%);
-  --greyText: rgb(190, 190, 190);
-  --inputColor: rgb(239, 239, 239);
-  --bodyColor: rgb(240, 240, 246);
-  --cardBG: rgb(255, 255, 235);
+    --PrimaryColor: hsl(199, 100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(255, 255, 235);
 }
 
 .home {
-  width: 100%;
-  min-height: calc(100vh - 100px);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 .home .overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgb(47, 106, 127);
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  mix-blend-mode: hard-light;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgb(47, 106, 127);
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    mix-blend-mode: hard-light;
 }
 .home video {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  -o-object-fit: cover;
-     object-fit: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 .home .homeContent {
-  height: -moz-max-content;
-  height: max-content;
-  padding: 8rem 1.5rem 3rem;
-  display: flex;
-  row-gap: 3rem;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  margin: auto;
-  color: var(--whiteColor);
-  z-index: 40;
+    height: -moz-max-content;
+    height: max-content;
+    padding: 8rem 1.5rem 3rem;
+    display: flex;
+    row-gap: 3rem;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    margin: auto;
+    color: var(--whiteColor);
+    z-index: 40;
 }
 .home .homeContent .textDiv {
-  padding: 2rem 0;
+    padding: 2rem 0;
 }
 .home .homeContent .textDiv .smallText {
-  font-size: 13px;
-  text-transform: uppercase;
+    font-size: 13px;
+    text-transform: uppercase;
 }
 .home .homeContent .textDiv .homeTitle {
-  position: relative;
-  font-size: 1.8rem;
+    position: relative;
+    font-size: 1.8rem;
 }
 .home .homeContent .cardDiv {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  background: var(--whiteColor);
-  border-radius: 12px;
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-  box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--whiteColor);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    box-sizing: border-box;
 }
 .home .homeContent .cardDiv .formGroup {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .home .homeContent .cardDiv .formGroup label {
-  color: var(--textColor);
-  margin-bottom: 0.5rem;
-  font-size: 14px;
-  font-weight: 500;
+    color: var(--textColor);
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+    font-weight: 500;
 }
 .home .homeContent .cardDiv .formGroup .label_total {
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
 }
 .home .homeContent .cardDiv .formGroup .label_total .total {
-  font-size: 14px;
-  font-weight: bold;
-  color: var(--textColor);
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--textColor);
 }
 .home .homeContent .cardDiv .formGroup .input {
-  height: 44px;
-  padding: 0 1rem;
-  background: var(--inputColor);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
+    height: 44px;
+    padding: 0 1rem;
+    background: var(--inputColor);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
 }
 .home .homeContent .cardDiv .formGroup .input input {
-  width: 100%;
-  background: none;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: black;
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
 }
 .home .homeContent .cardDiv .formGroup .input input::-moz-placeholder {
-  font-size: 14px;
+    font-size: 14px;
 }
 .home .homeContent .cardDiv .formGroup .input input::placeholder {
-  font-size: 14px;
+    font-size: 14px;
 }
-.home .homeContent .cardDiv .formGroup .input input[type=range] {
-  height: 3px;
-  padding: 0;
-  background: var(--PrimaryColor);
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
+.home .homeContent .cardDiv .formGroup .input input[type='range'] {
+    height: 3px;
+    padding: 0;
+    background: var(--PrimaryColor);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
 }
 .home .homeContent .cardDiv .formGroup .icon {
-  font-size: 18px;
-  color: var(--PrimaryColor);
-  margin-left: 10px;
+    font-size: 18px;
+    color: var(--PrimaryColor);
+    margin-left: 10px;
 }
 .home .homeContent .cardDiv .searchOptions {
-  background: var(--gradientColor);
-  padding: 10px 16px;
-  border-radius: 12px;
-  justify-content: center;
-  align-items: center;
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  height: 44px;
+    background: var(--gradientColor);
+    padding: 10px 16px;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    -moz-column-gap: 0.5rem;
+    column-gap: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    height: 44px;
 }
 .home .homeContent .cardDiv .searchOptions:hover {
-  background: var(--PrimaryColor);
+    background: var(--PrimaryColor);
 }
 .home .homeContent .cardDiv .searchOptions span {
-  font-size: 14px;
-  font-weight: 500;
+    font-size: 14px;
+    font-weight: 500;
 }
 .home .homeContent .homeFooterIcons {
-  width: 100%;
-  justify-content: space-between;
+    width: 100%;
+    justify-content: space-between;
 }
 .home .homeContent .homeFooterIcons .icon {
-  font-size: 20px;
-  margin: 0 5px;
-  color: var(--whiteColor);
-  font-weight: 600;
+    font-size: 20px;
+    margin: 0 5px;
+    color: var(--whiteColor);
+    font-weight: 600;
 }
 .home .homeContent .homeFooterIcons .icon:hover {
-  color: var(--PrimaryColor);
+    color: var(--PrimaryColor);
 }
 
 .scrollToTop {
-  position: fixed;
-  bottom: 100px;
-  right: 30px;
-  background-color: var(--PrimaryColor);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 10px 14px;
-  font-size: 30px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: opacity 0.3s ease;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background-color: var(--PrimaryColor);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 14px;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
 }
 
 .scrollToTop:hover {
-  background-color: var(--SecondaryColor);
+    background-color: var(--SecondaryColor);
 }
 
 @media (max-width: 768px) {
-  .homeContent {
-    width: 100%;
-    padding: 6rem 1rem;
-  }
-  .homeContent .cardDiv {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-    width: 100%;
-    max-width: none;
-    box-sizing: border-box;
-  }
-  .homeContent .formGroup {
-    width: 100%;
-  }
-  .homeContent .formGroup .input {
-    width: 100%;
-  }
-  .homeContent .formGroup input {
-    width: 100%;
-  }
-}/*# sourceMappingURL=home.css.map */
+    .homeContent {
+        width: 100%;
+        padding: 6rem 1rem;
+    }
+    .homeContent .cardDiv {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+    }
+    .homeContent .formGroup {
+        width: 100%;
+    }
+    .homeContent .formGroup .input {
+        width: 100%;
+    }
+    .homeContent .formGroup input {
+        width: 100%;
+    }
+} /*# sourceMappingURL=home.css.map */

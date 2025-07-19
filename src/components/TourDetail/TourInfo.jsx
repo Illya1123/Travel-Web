@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { FcRating } from 'react-icons/fc'
+import { useNavigate } from 'react-router-dom'
 
 const TourInfo = ({ tour }) => {
+    const navigate = useNavigate()
     const [adults, setAdults] = useState(1)
     const [children, setChildren] = useState(0)
     const totalPrice = Math.round(tour.price * adults + tour.price * 0.8 * children)
@@ -61,7 +63,14 @@ const TourInfo = ({ tour }) => {
                             />
                         </label>
                     </div>
-                    <button className="rounded-xl bg-orange-500 px-6 py-3 font-semibold text-white shadow transition hover:bg-orange-600">
+                    <button
+                        className="rounded-xl bg-orange-500 px-6 py-3 font-semibold text-white shadow transition hover:bg-orange-600"
+                        onClick={() =>
+                            navigate(
+                                `/onestepcheckout?tourId=${tour._id}&adults=${adults}&children=${children}&price=${totalPrice}`
+                            )
+                        }
+                    >
                         ĐẶT NGAY
                     </button>
                 </div>

@@ -1,19 +1,22 @@
 import { useEffect } from 'react'
-// import { Routes, Route } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import Modal from 'react-modal'
+
 import SignUpForm from './components/auth/SignUpForm'
 import SignInForm from './components/auth/SignInForm'
 import Layout from './components/Layout'
-import Home from './pages/Home/Home.jsx'
-import UserProfilePage from './pages/Profile/UserProfilePage.jsx'
 import StaffManager from './components/Layout/staff.jsx'
-import Detail from './pages/TourDetail/detail.jsx'
 import ForgetPassword from './components/auth/ForgetPassword.jsx'
 import ResetPassword from './components/auth/ResetPassword.jsx'
+
+import Home from './pages/Home/Home.jsx'
+import UserProfilePage from './pages/Profile/UserProfilePage.jsx'
+import Detail from './pages/TourDetail/detail.jsx'
+import OneStepCheckout from './pages/Payment/OneStepCheckoutPage.jsx'
 import NotFoundPage from './pages/NotFound/NotFoundPage.jsx'
+
 import PublicRoute from './PublicRoute.js'
 import PrivateRoute from './PrivateRoute.js'
 
@@ -40,6 +43,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute />,
                 children: [
                     { path: '/profile', element: <UserProfilePage /> },
+                    { path: '/onestepcheckout', element: <OneStepCheckout /> },
                 ],
             },
             { path: '*', element: <NotFoundPage /> },

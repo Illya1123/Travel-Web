@@ -175,13 +175,13 @@ const SignUpForm = () => {
                         )}
 
                         <div className="text-right">
-    <Link
-        to="/forgot-password"
-        className="text-sm text-blue-400 underline hover:text-blue-300"
-    >
-        Quên mật khẩu?
-    </Link>
-</div>
+                            <Link
+                                to="/forgot-password"
+                                className="text-sm text-blue-400 underline hover:text-blue-300"
+                            >
+                                Quên mật khẩu?
+                            </Link>
+                        </div>
                         <button
                             type="submit"
                             disabled={!(formik.isValid && formik.dirty)}

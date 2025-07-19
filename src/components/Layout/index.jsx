@@ -2,10 +2,12 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar.jsx'
 import Footer from '../Footer/Footer.jsx'
+import ScrollToTop from '../ScrollToTop.js'
 
 const Layout = () => {
     return (
         <div>
+            <ScrollToTop />
             <Navbar />
             <div style={{ paddingTop: '100px' }}></div>
             <Outlet />

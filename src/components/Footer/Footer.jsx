@@ -26,7 +26,7 @@ const Footer = () => {
             <div className="secContent container z-10">
                 <div className="contactDiv flex">
                     <div className="text text-center">
-                        <small className="text block mt-4">CHÀO MỪNG QUÝ KHÁCH</small>
+                        <small className="text mt-4 block">CHÀO MỪNG QUÝ KHÁCH</small>
                         <h2 className="text text-2xl font-semibold">Đồng hành cùng chúng tôi</h2>
                     </div>
 
