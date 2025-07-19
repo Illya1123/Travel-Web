@@ -103,7 +103,11 @@ const Main = ({ searchKeyword, maxPrice }) => {
 
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                 {currentData.map((tour) => (
-                    <TourCard key={tour._id} tour={tour} onClick={() => navigate(`/detail/${tour._id}`)} />
+                    <TourCard
+                        key={tour._id}
+                        tour={tour}
+                        onClick={() => navigate(`/detail/${tour._id}`)}
+                    />
                 ))}
             </div>
 

@@ -16,6 +16,8 @@ const AddressForm = ({
     street,
     setStreet,
     handleGetCurrentLocation,
+    label = 'Địa chỉ đón đầy đủ',
+    fullAdd,
 }) => {
     const fullAddress =
         street && selectedWard && selectedProvince
@@ -135,7 +137,7 @@ const AddressForm = ({
                 )}
 
                 <div className="mt-4">
-                    <label className="mb-1 block font-semibold text-gray-700">Địa chỉ đầy đủ</label>
+                    <label className="mb-1 block font-semibold text-gray-700">{label}</label>
                     <input
                         value={fullAddress}
                         readOnly

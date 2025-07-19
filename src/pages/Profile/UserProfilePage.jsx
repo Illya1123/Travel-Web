@@ -6,7 +6,7 @@ const UserProfilePage = () => {
     const [activeTab, setActiveTab] = useState('settings')
 
     return (
-        <div className="mx-auto mt-10 w-full max-w-7xl px-4">
+        <div className="mx-auto mt-10 min-h-[calc(100vh-100px)] w-full max-w-7xl px-4">
             <div className="grid grid-cols-4 gap-6">
                 {/* Sidebar: chiếm 1 cột trong 4 cột => 1/4 */}
                 <div className="col-span-1">

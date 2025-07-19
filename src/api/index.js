@@ -35,6 +35,15 @@ const signin = async (param) => {
     }
 }
 
+const updateUserInfo = (data) => {
+    const accessToken = localStorage.getItem('accessToken')
+    return axios.put(`${baseUrl}/api/user/`, data, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    })
+}
+
 const resetPassword = async ({ password, token }) => {
     try {
         const res = await axios.put(`${baseUrl}/api/user/resetpassword`, { password, token })
@@ -54,4 +63,4 @@ const forgotPassword = async (email) => {
     }
 }
 
-export { baseUrl, signup, signin, resetPassword, forgotPassword }
+export { baseUrl, signup, signin, updateUserInfo, resetPassword, forgotPassword }
