@@ -7,13 +7,7 @@ const TourImages = ({ tour }) => {
         original: img,
         thumbnail: img,
     }))
-    return (
-        <ImageGallery
-            items={images}
-            showPlayButton={false}
-            showFullscreenButton={true}
-        />
-    )
+    return <ImageGallery items={images} showPlayButton={false} showFullscreenButton={true} />
 }
 
 export default TourImages

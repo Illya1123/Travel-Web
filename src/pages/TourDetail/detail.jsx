@@ -62,7 +62,7 @@ const Detail = () => {
                 </div>
                 <div className="flex flex-col gap-8 lg:w-2/5">
                     <RelatedTours relatedTours={relatedTours} />
-                    <Comments user={user} />
+                    <Comments user={user} tourId={tour._id} />
                 </div>
             </div>
         </div>
