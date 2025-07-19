@@ -3,6 +3,7 @@ import * as Yup from 'yup'
 import Swal from 'sweetalert2'
 import { useState } from 'react'
 import { signup } from '../../api'
+import { Link } from 'react-router-dom'
 import './auth.css'
 import { MdTravelExplore, MdAlternateEmail } from 'react-icons/md'
 import { FaFingerprint, FaRegEye, FaRegEyeSlash, FaUser } from 'react-icons/fa'
@@ -173,6 +174,14 @@ const SignUpForm = () => {
                             </p>
                         )}
 
+                        <div className="text-right">
+    <Link
+        to="/forgot-password"
+        className="text-sm text-blue-400 underline hover:text-blue-300"
+    >
+        Quên mật khẩu?
+    </Link>
+</div>
                         <button
                             type="submit"
                             disabled={!(formik.isValid && formik.dirty)}

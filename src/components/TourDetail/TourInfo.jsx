@@ -81,7 +81,7 @@ const TourInfo = ({ tour }) => {
                 </div>
                 <div className="flex items-center gap-2">
                     <span className="text-xl">📅</span>
-                    <span className="font-medium">{tour.date}</span>
+                    <span className="font-medium">{tour.date} (Ngày cập nhật)</span>
                 </div>
             </div>
 

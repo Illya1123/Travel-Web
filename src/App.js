@@ -11,6 +11,9 @@ import Home from './pages/Home/Home.jsx'
 import UserProfilePage from './pages/Profile/UserProfilePage.jsx'
 import StaffManager from './components/Layout/staff.jsx'
 import Detail from './pages/TourDetail/detail.jsx'
+import ForgetPassword from './components/auth/ForgetPassword.jsx'
+import ResetPassword from './components/auth/ResetPassword.jsx'
+import PublicRoute from './PublicRoute.js'
 import PrivateRoute from './PrivateRoute.js'
 
 const router = createBrowserRouter([
@@ -19,15 +22,24 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
             { path: '/', element: <Home /> },
-            { path: '/register', element: <SignUpForm /> },
-            { path: '/login', element: <SignInForm /> },
             { path: '/home', element: <Home /> },
             { path: '/detail/:id', element: <Detail /> },
-
+            { path: '/reset-password/:token', element: <ResetPassword /> },
+            // Các route đã đăng nhập thì không được vào nữa đặt trong PublicRoute
+            {
+                element: <PublicRoute />,
+                children: [
+                    { path: '/login', element: <SignInForm /> },
+                    { path: '/register', element: <SignUpForm /> },
+                    { path: '/forgot-password', element: <ForgetPassword /> },
+                ],
+            },
             // Các route cần đăng nhập đặt trong PrivateRoute
             {
                 element: <PrivateRoute />,
-                children: [{ path: '/profile', element: <UserProfilePage /> }],
+                children: [
+                    { path: '/profile', element: <UserProfilePage /> },
+                ],
             },
         ],
     },

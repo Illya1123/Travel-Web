@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -145,6 +146,14 @@ const SignInForm = () => {
                             <p className="ml-2 text-sm text-red-500">{formik.errors.password}</p>
                         )}
 
+                        <div className="text-right">
+    <Link
+        to="/forgot-password"
+        className="text-sm text-blue-400 underline hover:text-blue-300"
+    >
+        Quên mật khẩu?
+    </Link>
+</div>
                         <button
                             type="submit"
                             disabled={!(formik.isValid && formik.dirty)}

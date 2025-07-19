@@ -35,4 +35,23 @@ const signin = async (param) => {
     }
 }
 
-export { baseUrl, signup, signin }
+const resetPassword = async ({ password, token }) => {
+    try {
+        const res = await axios.put(`${baseUrl}/api/user/resetpassword`, { password, token })
+        return res.data
+    } catch (error) {
+        console.error('Lỗi gọi API reset password:', error)
+        return { success: false, message: 'Lỗi khi gửi yêu cầu đổi mật khẩu.' }
+    }
+}
+
+const forgotPassword = async (email) => {
+    try {
+        const res = await axios.get(`${baseUrl}/api/user/forgotpassword?email=${email}`)
+        return res.data
+    } catch (err) {
+        return { success: false, message: err.response?.data?.message || 'Lỗi server' }
+    }
+}
+
+export { baseUrl, signup, signin, resetPassword, forgotPassword }
