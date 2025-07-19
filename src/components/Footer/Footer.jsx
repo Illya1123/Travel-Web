@@ -154,7 +154,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="footerDiv flex">
+                    <div className="footerDiv flex text-center">
                         <small>TRANG WEB TRAVEL WITH QUOC ANH</small>
                         <small>COPYRIGHTS RESERVED - Illya Chan</small>
                     </div>

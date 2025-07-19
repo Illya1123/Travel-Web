@@ -51,7 +51,7 @@ const Navbar = () => {
 
     // ✅ Chỉ giữ scroll listener thôi
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 100)
+        const handleScroll = () => setIsScrolled(window.scrollY > 1)
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
