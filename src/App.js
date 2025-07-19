@@ -13,6 +13,7 @@ import StaffManager from './components/Layout/staff.jsx'
 import Detail from './pages/TourDetail/detail.jsx'
 import ForgetPassword from './components/auth/ForgetPassword.jsx'
 import ResetPassword from './components/auth/ResetPassword.jsx'
+import NotFoundPage from './pages/NotFound/NotFoundPage.jsx'
 import PublicRoute from './PublicRoute.js'
 import PrivateRoute from './PrivateRoute.js'
 
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
                     { path: '/profile', element: <UserProfilePage /> },
                 ],
             },
+            { path: '*', element: <NotFoundPage /> },
         ],
     },
     {

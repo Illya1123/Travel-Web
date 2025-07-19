@@ -83,7 +83,7 @@ const SignInForm = () => {
     })
 
     return (
-        <section className="login relative h-screen w-full">
+        <section className="login relative min-h-[calc(100vh-100px)] w-full">
             <div className="overlay absolute left-0 top-0 z-10 h-full w-full bg-black/40"></div>
             <video
                 src="/videos/LoginPage_Ha_Long_Bay_3840x2160.mp4"
@@ -96,7 +96,7 @@ const SignInForm = () => {
                 className="absolute left-0 top-0 z-0 h-full w-full object-cover"
             ></video>
 
-            <div className="loginContent relative z-20 flex h-full w-full items-center justify-center">
+            <div className="loginContent relative z-20 flex min-h-[calc(100vh-100px)] w-full items-center justify-center">
                 <div className="flex w-[90%] max-w-md flex-col items-center gap-6 rounded-2xl bg-gray-900/80 p-8 text-white shadow-2xl backdrop-blur-md md:max-w-lg md:p-10">
                     <div className="mb-2 flex items-center gap-2 text-3xl font-bold text-sky-700">
                         <MdTravelExplore />
