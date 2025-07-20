@@ -50,7 +50,7 @@ const Comments = ({ user, tourId }) => {
         try {
             if (editingId) {
                 const res = await updateComment(editingId, {
-                    userId: user._id,
+                    userId: user.id,
                     comment: commentInput,
                     rating,
                 })
@@ -72,7 +72,7 @@ const Comments = ({ user, tourId }) => {
                 }
             } else {
                 const res = await createComment({
-                    userId: user._id,
+                    userId: user.id,
                     tourId,
                     comment: commentInput,
                     rating,
@@ -196,7 +196,7 @@ const Comments = ({ user, tourId }) => {
                                     <p className="text-base font-semibold text-gray-800">
                                         {cmt.user.name}
                                     </p>
-                                    {user && cmt.user._id === user._id && (
+                                    {user && cmt.user.id === user.id && (
                                         <button
                                             onClick={() => handleEdit(cmt)}
                                             className="text-sm text-blue-500 hover:underline"
