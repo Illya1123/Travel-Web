@@ -192,7 +192,7 @@ const UserBookedTours = () => {
 
                                                     <div className="rounded-lg border bg-white p-2 shadow">
                                                         <QRCodeCanvas
-                                                            value={`http://192.168.31.228:4000/order/${order.orderId}`}
+                                                            value={`https://travel-web-seven-xi.vercel.app/order/${order.orderId}`}
                                                             size={128}
                                                             fgColor="#1e3a8a"
                                                             includeMargin={true}
