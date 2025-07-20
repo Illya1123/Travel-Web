@@ -67,6 +67,7 @@ const SignInForm = () => {
                     dispatch(setCurrentUserIsLogin(true))
                     localStorage.setItem('name', JSON.stringify(response.userData.name))
                     localStorage.setItem('isLogin', true)
+                    // localStorage.setItem('userId', response.userData.id)
                     localStorage.setItem('userData', JSON.stringify(response.userData))
                     localStorage.setItem('accessToken', response.accessToken)
                     formik.resetForm()

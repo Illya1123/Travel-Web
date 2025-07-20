@@ -65,7 +65,7 @@ const OneStepCheckout = () => {
         const originalPrice = Math.round(tour.price * adults + tour.price * 0.8 * children)
 
         const orderData = {
-            userId: user.uid || user._id,
+            userId: user.uid || user.id,
             status: 'Đã đặt',
             tour: [
                 {
@@ -77,6 +77,8 @@ const OneStepCheckout = () => {
             ],
             paymentMethod: selectedMethod === 'Tiền Mặt' ? 'Tiền Mặt' : 'Chuyển khoản',
             note,
+            pickupPhone: user.phone?.trim() || '',
+            pickupAddress: user.address?.trim() || '',
             originalPrice,
             discountAmount,
             totalPrice: originalPrice - discountAmount,

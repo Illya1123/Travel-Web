@@ -17,6 +17,7 @@ import Detail from './pages/TourDetail/detail.jsx'
 import OneStepCheckout from './pages/Payment/OneStepCheckoutPage.jsx'
 import PaymentSuccess from './pages/PaymentSuccessfully/PaymentSuccess.jsx'
 import NotFoundPage from './pages/NotFound/NotFoundPage.jsx'
+import OrderDetail from './pages/OrderDetail/OrderDetail.jsx'
 
 import PublicRoute from './PublicRoute.js'
 import PrivateRoute from './PrivateRoute.js'
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
             { path: '/detail/:id', element: <Detail /> },
             { path: '/payment-successfully', element: <PaymentSuccess /> },
             { path: '/reset-password/:token', element: <ResetPassword /> },
+            { path: '/order/:orderId', element: <OrderDetail /> },
             // Các route đã đăng nhập thì không được vào nữa đặt trong PublicRoute
             {
                 element: <PublicRoute />,
