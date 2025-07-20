@@ -40,7 +40,7 @@ const Home = () => {
             <section className="home">
                 <div className="overlay"></div>
                 <video
-                    src="/videos/home_video.mp4"
+                    src="https://res.cloudinary.com/dnroxsd4n/video/upload/f_auto,q_auto,vc_auto/v1752994366/home_video_kgartb.mp4"
                     typeof="video/mp4"
                     loop
                     autoPlay

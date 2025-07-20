@@ -58,7 +58,7 @@ const ResetPassword = () => {
         <section className="login relative min-h-[calc(100vh-100px)] w-full">
             <div className="overlay absolute left-0 top-0 z-10 h-full w-full bg-black/40"></div>
             <video
-                src="/videos/ChangePassword_Hanoi_Timelapse_3840x2160.mp4"
+                src="https://res.cloudinary.com/dnroxsd4n/video/upload/f_auto,q_auto,vc_auto/v1752994349/ChangePassword_Hanoi_Timelapse_3840x2160_dbsnta.mp4"
                 type="video/mp4"
                 loop
                 autoPlay

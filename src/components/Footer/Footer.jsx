@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="footer">
             <div className="videoDiv">
                 <video
-                    src="/videos/footer_video.mp4"
+                    src="https://res.cloudinary.com/dnroxsd4n/video/upload/f_auto,q_auto,vc_auto/v1752994349/footer_video_qrdy4s.mp4"
                     preload="auto"
                     playsInline
                     loop
