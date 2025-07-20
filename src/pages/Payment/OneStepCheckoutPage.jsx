@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getTour } from '../../api/tours'
+import { requestMoMoPayment } from '../../api/momo'
+import { checkVoucher } from '../../api/voucher'
 import UserInfoForm from '../../components/OneStepCheckout/UserInfoForm/UserInfoForm'
 import TourInfo from '../../components/OneStepCheckout/TourInfo'
 import DiscountSection from '../../components/OneStepCheckout/DiscountSection'
@@ -28,6 +30,8 @@ const OneStepCheckout = () => {
     const [note, setNote] = useState('')
     const [showConfirm, setShowConfirm] = useState(false)
     const [selectedMethod, setSelectedMethod] = useState('MoMo')
+    const [discountAmount, setDiscountAmount] = useState(0)
+    const [voucherId, setVoucherId] = useState(null)
 
     const [adults, setAdults] = useState(adultsQuery)
     const [children, setChildren] = useState(childrenQuery)
@@ -52,8 +56,47 @@ const OneStepCheckout = () => {
         setShowConfirm(true)
     }
 
-    const handlePayment = () => {
-        console.log('Đặt tour thành công!')
+    const handlePayment = async () => {
+        if (!user) {
+            alert('Bạn cần đăng nhập để đặt tour!')
+            return
+        }
+
+        const originalPrice = Math.round(tour.price * adults + tour.price * 0.8 * children)
+
+        const orderData = {
+            userId: user.uid || user._id,
+            status: 'Đã đặt',
+            tour: [
+                {
+                    tourId: tour._id,
+                    numberOfAdults: adults,
+                    numberOfChildren: children,
+                    date: selectedDate,
+                },
+            ],
+            paymentMethod: selectedMethod === 'Tiền Mặt' ? 'Tiền Mặt' : 'Chuyển khoản',
+            note,
+            originalPrice,
+            discountAmount,
+            totalPrice: originalPrice - discountAmount,
+            voucherId,
+        }
+
+        try {
+            const result = await requestMoMoPayment(orderData)
+            console.log('Kết quả thanh toán:', result)
+
+            if (result.resultCode === 0 && result.payUrl) {
+                window.location.href = result.payUrl // 🔁 redirect người dùng tới trang MoMo
+            } else {
+                alert(result.message || 'Thanh toán thất bại!')
+            }
+        } catch (error) {
+            console.error('Lỗi khi thanh toán:', error)
+            alert('Không thể kết nối với máy chủ!')
+        }
+
         setShowConfirm(false)
     }
 
@@ -78,9 +121,30 @@ const OneStepCheckout = () => {
         }
     }, [adults, children, tour])
 
-    const applyDiscount = () => {
-        if (discountCode === 'DISCOUNT20') {
-            setFinalPrice((prev) => prev - 20000)
+    const applyDiscount = async () => {
+        if (!discountCode) {
+            alert('Vui lòng nhập mã khuyến mãi!')
+            return
+        }
+
+        const original = Math.round(tour.price * adults + tour.price * 0.8 * children)
+
+        try {
+            const res = await checkVoucher(discountCode, original)
+
+            if (res.voucherId && res.discountAmount != null) {
+                setDiscountAmount(res.discountAmount)
+                setVoucherId(res.voucherId)
+                setFinalPrice(original - res.discountAmount)
+                alert('Áp dụng mã giảm giá thành công!')
+            } else {
+                throw new Error('Mã không hợp lệ!')
+            }
+        } catch (err) {
+            alert(err.message || 'Mã giảm giá không hợp lệ!')
+            setDiscountAmount(0)
+            setVoucherId(null)
+            setFinalPrice(original)
         }
     }
 
@@ -128,8 +192,14 @@ const OneStepCheckout = () => {
 
                 <div className="mt-10 flex flex-col items-center justify-between sm:flex-row">
                     <div className="text-2xl font-bold text-gray-800">
-                        Tổng tiền: {finalPrice?.toLocaleString()}đ
+                        Tổng tiền: {(finalPrice || 0)?.toLocaleString()}đ
+                        {discountAmount > 0 && (
+                            <span className="ml-2 text-sm text-green-600">
+                                (Đã giảm {discountAmount.toLocaleString()}đ)
+                            </span>
+                        )}
                     </div>
+
                     <button
                         onClick={handleConfirmClick}
                         disabled={!isFormValid()}
