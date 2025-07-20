@@ -15,8 +15,9 @@ const Navbar = () => {
     const [open, setOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
 
-    // ✅ Chỉ cần khai báo ở đây — không cần setState
-    const isMobile = useMediaQuery({ maxWidth: 1700 })
+    const isMobile = useMediaQuery({ maxWidth: 1440 })
+    const isMidDesktop = useMediaQuery({ minWidth: 1441, maxWidth: 1680 })
+    const isLargeDesktop = useMediaQuery({ minWidth: 1681 })
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -27,29 +28,15 @@ const Navbar = () => {
 
     const toggleNavbar = () => setOpen(!open)
     const closeNavbar = () => setOpen(false)
+
     const handleLogout = () => {
         localStorage.clear()
         dispatch({ type: '@INIT' })
         navigate('/')
     }
+
     const handleUserRedirect = () => navigate('/profile')
 
-    const useWindowWidth = () => {
-        const [width, setWidth] = useState(window.innerWidth)
-
-        useEffect(() => {
-            const handleResize = () => setWidth(window.innerWidth)
-            window.addEventListener('resize', handleResize)
-            return () => window.removeEventListener('resize', handleResize)
-        }, [])
-
-        return width
-    }
-
-    const windowWidth = useWindowWidth()
-    const isFullScreen = windowWidth < 768
-
-    // ✅ Chỉ giữ scroll listener thôi
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 1)
         window.addEventListener('scroll', handleScroll)
@@ -64,6 +51,9 @@ const Navbar = () => {
         { id: 5, name: 'Tin tức', path: '/tin-tuc', icon: <FaRegNewspaper /> },
         { id: 6, name: 'Về chúng tôi', path: '/ve-chung-toi', icon: <GoPeople /> },
     ]
+
+    const windowWidth = window.innerWidth
+    const isFullScreen = windowWidth < 768
 
     return (
         <div
@@ -83,24 +73,18 @@ const Navbar = () => {
 
             {/* Desktop Nav */}
             {!isMobile && (
-                <ul className="ml-8 flex gap-6 text-xl font-medium text-neutral-700">
+                <ul className="ml-8 flex gap-6 font-medium text-neutral-700">
                     {navItems.map((item) => (
-                        <li
-                            key={item.id}
-                            onClick={closeNavbar}
-                            className={`cursor-pointer hover:text-sky-700 ${
-                                location.pathname === item.path ? 'text-sky-700' : ''
-                            }`}
-                        >
+                        <li key={item.id} onClick={closeNavbar}>
                             <Link
-                                className={`flex items-center gap-x-2 rounded-full border border-transparent px-4 py-2 transition duration-200 ${
+                                to={item.path}
+                                className={`flex items-center rounded-full border border-transparent px-4 py-2 transition duration-200 ${
                                     location.pathname === item.path
                                         ? 'border-sky-700 bg-sky-50 text-sky-700'
                                         : 'text-neutral-700 hover:border-sky-700 hover:bg-sky-50 hover:text-sky-700'
-                                }`}
-                                to={item.path}
+                                } ${isMidDesktop ? 'gap-1 text-base' : 'gap-2 text-xl'}`}
                             >
-                                {item.icon}
+                                {(isLargeDesktop || isMobile) && item.icon}
                                 {item.name}
                             </Link>
                         </li>
@@ -114,13 +98,17 @@ const Navbar = () => {
                     {!isLoggedIn ? (
                         <>
                             <button
-                                className="px-5 py-2 text-xl text-neutral-800 transition hover:text-sky-700"
+                                className={`rounded-full bg-sky-100 text-sky-700 transition hover:bg-sky-200 ${
+                                    isMidDesktop ? 'px-5 py-1 text-base' : 'px-6 py-2 text-xl'
+                                }`}
                                 onClick={() => navigate('/register')}
                             >
                                 Đăng ký
                             </button>
                             <button
-                                className="rounded-full bg-neutral-800 px-6 py-2 text-xl text-white transition hover:bg-neutral-700"
+                                className={`rounded-full bg-neutral-800 text-white transition hover:bg-neutral-700 ${
+                                    isMidDesktop ? 'px-5 py-1 text-base' : 'px-6 py-2 text-xl'
+                                }`}
                                 onClick={() => navigate('/login')}
                             >
                                 Đăng nhập
@@ -129,13 +117,17 @@ const Navbar = () => {
                     ) : (
                         <>
                             <button
-                                className="px-4 py-2 text-xl font-medium text-sky-700 hover:underline"
+                                className={`font-medium text-sky-700 hover:underline ${
+                                    isMidDesktop ? 'px-4 py-1 text-base' : 'px-4 py-2 text-xl'
+                                }`}
                                 onClick={handleUserRedirect}
                             >
                                 Chào, {name}
                             </button>
                             <button
-                                className="rounded-full bg-red-600 px-6 py-2 text-xl text-white transition hover:bg-red-500"
+                                className={`rounded-full bg-red-600 text-white transition hover:bg-red-500 ${
+                                    isMidDesktop ? 'px-5 py-1 text-base' : 'px-6 py-2 text-xl'
+                                }`}
                                 onClick={handleLogout}
                             >
                                 Đăng xuất
@@ -144,7 +136,6 @@ const Navbar = () => {
                     )}
                 </div>
             ) : (
-                // Mobile Toggle Button
                 <button onClick={toggleNavbar} className="text-neutral-700">
                     <RiMenuLine size={36} />
                 </button>
@@ -177,10 +168,11 @@ const Navbar = () => {
                             <li key={item.id} onClick={closeNavbar}>
                                 <Link
                                     to={item.path}
-                                    className={`block hover:text-sky-700 ${
+                                    className={`flex items-center gap-2 hover:text-sky-700 ${
                                         location.pathname === item.path ? 'text-sky-700' : ''
                                     }`}
                                 >
+                                    {item.icon}
                                     {item.name}
                                 </Link>
                             </li>

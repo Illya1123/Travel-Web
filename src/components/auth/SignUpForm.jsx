@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import Swal from 'sweetalert2'
 import { useState } from 'react'
 import { signup } from '../../api'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './auth.css'
 import { MdTravelExplore, MdAlternateEmail } from 'react-icons/md'
 import { FaFingerprint, FaRegEye, FaRegEyeSlash, FaUser } from 'react-icons/fa'
@@ -11,6 +11,7 @@ import { FaFingerprint, FaRegEye, FaRegEyeSlash, FaUser } from 'react-icons/fa'
 const SignUpForm = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const navigate = useNavigate()
 
     const togglePasswordView = () => setShowPassword((prev) => !prev)
     const toggleConfirmPasswordView = () => setShowConfirmPassword((prev) => !prev)
@@ -53,8 +54,10 @@ const SignUpForm = () => {
                         text: 'Bạn đã đăng ký tài khoản thành công.',
                         icon: 'success',
                         confirmButtonText: 'OK',
+                    }).then(() => {
+                        formik.resetForm()
+                        navigate('/login')
                     })
-                    formik.resetForm()
                 }
             } catch (error) {
                 Swal.fire({
@@ -191,6 +194,15 @@ const SignUpForm = () => {
                         >
                             Đăng ký
                         </button>
+                        <div className="text-center text-sm text-gray-300">
+                            Bạn đã có tài khoản?{' '}
+                            <Link
+                                to="/login"
+                                className="text-blue-400 underline hover:text-blue-300"
+                            >
+                                Đăng nhập ngay
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div>

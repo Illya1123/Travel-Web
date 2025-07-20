@@ -164,6 +164,15 @@ const SignInForm = () => {
                         >
                             Đăng nhập
                         </button>
+                        <div className="text-center text-sm text-gray-300">
+                            Bạn chưa có tài khoản?{' '}
+                            <Link
+                                to="/register"
+                                className="text-blue-400 underline hover:text-blue-300"
+                            >
+                                Đăng ký ngay
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div>
