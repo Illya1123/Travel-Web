@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = `http://192.168.31.228:3000`
+const baseUrl = process.env.REACT_APP_BACKEND
 
 const signup = async (param) => {
     const data = {
