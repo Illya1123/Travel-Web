@@ -196,7 +196,7 @@ const Comments = ({ user, tourId }) => {
                                     <p className="text-base font-semibold text-gray-800">
                                         {cmt.user.name}
                                     </p>
-                                    {user && cmt.user.id === user.id && (
+                                    {user && cmt.user._id === user.id && (
                                         <button
                                             onClick={() => handleEdit(cmt)}
                                             className="text-sm text-blue-500 hover:underline"
