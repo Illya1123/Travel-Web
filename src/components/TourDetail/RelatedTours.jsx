@@ -14,7 +14,7 @@ const RelatedTours = ({ relatedTours }) => {
                         className="cursor-pointer overflow-hidden rounded-md border border-gray-200 bg-gray-50 transition hover:shadow-md"
                         onClick={() => navigate(`/detail/${t._id}`)}
                     >
-                        <img src={t.image} alt={t.title} className="h-36 w-full object-cover" />
+                        <img src={t.image[0]} alt={t.title} className="h-36 w-full object-cover" />
                         <div className="p-3">
                             <h4 className="line-clamp-2 text-sm font-semibold text-gray-800">
                                 {t.title}

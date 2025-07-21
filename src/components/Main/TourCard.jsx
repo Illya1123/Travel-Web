@@ -6,7 +6,7 @@ const TourCard = ({ tour, onClick }) => {
         <div className="flex h-full flex-col justify-between overflow-hidden rounded-xl bg-white shadow transition hover:shadow-lg">
             <div className="h-48 w-full overflow-hidden">
                 <img
-                    src={tour.image || '/default-image.jpg'}
+                    src={tour.image[0] || '/default-image.jpg'}
                     alt={tour.title}
                     className="h-full w-full object-cover"
                 />
