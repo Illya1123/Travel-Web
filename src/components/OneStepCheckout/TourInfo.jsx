@@ -14,7 +14,7 @@ const TourInfo = ({
         <div className="rounded-2xl border bg-white p-6 shadow-lg">
             <h2 className="mb-6 text-xl font-semibold text-gray-700">Thông tin tour</h2>
             <img
-                src={tour.image}
+                src={tour.image[0]}
                 alt={tour.title}
                 className="mb-4 h-48 w-full rounded-xl object-cover"
             />
