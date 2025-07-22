@@ -14,3 +14,8 @@ export const requestMoMoPayment = async (orderData) => {
         throw error
     }
 }
+
+export const checkMomoStatus = async (orderId) => {
+    const response = await axios.post(`${baseUrl}/api/payment-momo/momo/status`, { orderId })
+    return response.data
+}
