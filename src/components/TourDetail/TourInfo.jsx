@@ -97,11 +97,37 @@ const TourInfo = ({ tour }) => {
             {/* 4. Tổng quan */}
             <div className="rounded-xl border border-gray-200 bg-white p-5 shadow">
                 <h3 className="mb-3 text-xl font-semibold text-orange-500">📝 Tổng quan</h3>
-                <ul className="list-disc space-y-2 pl-5 text-base text-gray-700">
-                    {tour.overview?.map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
-                </ul>
+
+                {Array.isArray(tour.overview) && tour.overview.length === 1 ? (
+                    <div className="space-y-4 text-base text-gray-700">
+                        {tour.overview[0]
+                            .split('\n')
+                            .filter((line) => line.trim() !== '')
+                            .map((line, index) => {
+                                const isHeading = /^Ngày\s+\d+/i.test(line.trim())
+                                return (
+                                    <p
+                                        key={index}
+                                        className={
+                                            isHeading
+                                                ? 'font-semibold text-blue-600'
+                                                : 'whitespace-pre-line'
+                                        }
+                                    >
+                                        {line.trim()}
+                                    </p>
+                                )
+                            })}
+                    </div>
+                ) : Array.isArray(tour.overview) ? (
+                    <ul className="list-disc space-y-2 pl-5 text-base text-gray-700">
+                        {tour.overview.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p className="whitespace-pre-line text-base text-gray-700">{tour.overview}</p>
+                )}
             </div>
 
             {/* 5. Dịch vụ bao gồm */}
