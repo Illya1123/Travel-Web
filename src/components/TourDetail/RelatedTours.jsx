@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { createSlug } from '../../utils/slugHelper'
 
 const RelatedTours = ({ relatedTours }) => {
     const navigate = useNavigate()
@@ -12,7 +13,7 @@ const RelatedTours = ({ relatedTours }) => {
                     <div
                         key={t._id}
                         className="cursor-pointer overflow-hidden rounded-md border border-gray-200 bg-gray-50 transition hover:shadow-md"
-                        onClick={() => navigate(`/detail/${t._id}`)}
+                        onClick={() => navigate(`/detail/${createSlug(t.title)}`)}
                     >
                         <img src={t.image[0]} alt={t.title} className="h-36 w-full object-cover" />
                         <div className="p-3">

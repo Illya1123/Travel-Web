@@ -12,9 +12,14 @@ module.exports = {
                     '0%, 100%': { opacity: 1 },
                     '50%': { opacity: 0 },
                 },
+                wave: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-6px)' },
+                },
             },
             animation: {
                 'blink-delay': 'blink 4s infinite 2s',
+                'wave': 'wave 0.6s ease-in-out infinite',
             },
         },
     },

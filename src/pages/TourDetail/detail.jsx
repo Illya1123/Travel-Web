@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getTour, getAllTours } from '../../api/tours'
+import { getAllTours } from '../../api/tours'
 import TourImages from '../../components/TourDetail/TourImages'
 import TourInfo from '../../components/TourDetail/TourInfo'
 import RelatedTours from '../../components/TourDetail/RelatedTours'
 import Comments from '../../components/TourDetail/Comments'
 import { createSlug } from '../../utils/slugHelper'
+import Loading from '../../components/Loading/Loading'
 
 const Detail = () => {
-    const { id } = useParams()
     const { slug } = useParams()
     const [tour, setTour] = useState(null)
     const [relatedTours, setRelatedTours] = useState([])
     const [user, setUser] = useState(null)
 
     useEffect(() => {
+        // Reset tour mỗi khi slug thay đổi để đảm bảo reload dữ liệu mới
+        setTour(null)
+
         const fetchTour = async () => {
             try {
                 const all = await getAllTours()
@@ -23,8 +26,8 @@ const Detail = () => {
                     const normalizedImage = Array.isArray(matched.image)
                         ? matched.image
                         : matched.image
-                          ? [matched.image]
-                          : []
+                        ? [matched.image]
+                        : []
 
                     setTour({ ...matched, image: normalizedImage })
                 }
@@ -34,7 +37,12 @@ const Detail = () => {
         }
 
         fetchTour()
-    }, [slug])
+
+        const storedUser = localStorage.getItem('userData')
+        if (storedUser) {
+            setUser(JSON.parse(storedUser))
+        }
+    }, [slug]) // <--- khi slug thay đổi, reset tour + fetch lại
 
     useEffect(() => {
         const fetchRelatedTours = async () => {
@@ -60,7 +68,7 @@ const Detail = () => {
         if (tour) fetchRelatedTours()
     }, [tour])
 
-    if (!tour) return <div className="mt-10 text-center text-lg">Đang tải...</div>
+    if (!tour) return <Loading />
 
     return (
         <div className="px-6 py-10">
