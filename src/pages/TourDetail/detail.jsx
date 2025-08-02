@@ -5,9 +5,11 @@ import TourImages from '../../components/TourDetail/TourImages'
 import TourInfo from '../../components/TourDetail/TourInfo'
 import RelatedTours from '../../components/TourDetail/RelatedTours'
 import Comments from '../../components/TourDetail/Comments'
+import { createSlug } from '../../utils/slugHelper'
 
 const Detail = () => {
     const { id } = useParams()
+    const { slug } = useParams()
     const [tour, setTour] = useState(null)
     const [relatedTours, setRelatedTours] = useState([])
     const [user, setUser] = useState(null)
@@ -15,30 +17,24 @@ const Detail = () => {
     useEffect(() => {
         const fetchTour = async () => {
             try {
-                const result = await getTour(id)
-                if (result.status === 'success') {
-                    const tourData = result.data
+                const all = await getAllTours()
+                const matched = all.find((t) => createSlug(t.title) === slug)
+                if (matched) {
+                    const normalizedImage = Array.isArray(matched.image)
+                        ? matched.image
+                        : matched.image
+                          ? [matched.image]
+                          : []
 
-                    const normalizedImage = Array.isArray(tourData.image)
-                        ? tourData.image
-                        : tourData.image
-                        ? [tourData.image]
-                        : []
-
-                    setTour({ ...tourData, image: normalizedImage })
+                    setTour({ ...matched, image: normalizedImage })
                 }
-            } catch (error) {
-                console.error('Lỗi khi lấy thông tin tour:', error)
+            } catch (err) {
+                console.error('Lỗi lấy tour:', err)
             }
         }
 
         fetchTour()
-
-        const storedUser = localStorage.getItem('userData')
-        if (storedUser) {
-            setUser(JSON.parse(storedUser))
-        }
-    }, [id])
+    }, [slug])
 
     useEffect(() => {
         const fetchRelatedTours = async () => {

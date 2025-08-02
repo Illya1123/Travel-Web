@@ -14,11 +14,11 @@ const Filters = ({
     handleNext,
 }) => {
     return (
-        <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-6">
             <div>
-                <label className="mb-1 block font-medium">Loại tour:</label>
+                <label className="mb-2 block font-semibold text-gray-700">Loại tour</label>
                 <select
-                    className="w-full rounded border px-3 py-2"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
                 >
@@ -30,10 +30,11 @@ const Filters = ({
                     ))}
                 </select>
             </div>
+
             <div>
-                <label className="mb-1 block font-medium">Sắp xếp theo giá:</label>
+                <label className="mb-2 block font-semibold text-gray-700">Sắp xếp theo giá</label>
                 <select
-                    className="w-full rounded border px-3 py-2"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
                     value={sortOrder}
                     onChange={(e) => setSortOrder(e.target.value)}
                 >
@@ -42,16 +43,15 @@ const Filters = ({
                     <option value="desc">Giảm dần</option>
                 </select>
             </div>
-            <div>
-                <label className="invisible mb-1 block font-medium md:visible">Phân trang</label>
-                <div ref={paginationRef}>
-                    <PaginationControls
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        handlePrev={handlePrev}
-                        handleNext={handleNext}
-                    />
-                </div>
+
+            <div ref={paginationRef}>
+                <label className="mb-2 block font-semibold text-gray-700">Phân trang</label>
+                <PaginationControls
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    handlePrev={handlePrev}
+                    handleNext={handleNext}
+                />
             </div>
         </div>
     )
