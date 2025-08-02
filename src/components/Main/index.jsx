@@ -8,6 +8,7 @@ import FilterSidebar from './FilterSidebar'
 import FilterDrawer from './FilterDrawer'
 import TourGrid from './TourGrid'
 import PaginationControls from './PaginationControls'
+import Loading from '../../components/Loading/Loading'
 
 const ITEMS_PER_PAGE = 10
 
@@ -83,6 +84,10 @@ const Main = ({ searchKeyword, maxPrice }) => {
         paginationRef: topPaginationRef,
         currentPage, totalPages,
         handlePrev, handleNext
+    }
+
+    if (data.length === 0) {
+        return <Loading />;
     }
 
     return (
