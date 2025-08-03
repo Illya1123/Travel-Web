@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Bảo hiểm toàn diện",
+    "description": "Tất cả các xe đều có bảo hiểm đầy đủ để bạn yên tâm khi sử dụng.",
+    "icon": "Shield"
+  },
+  {
+    "title": "Hỗ trợ 24/7",
+    "description": "Dịch vụ hỗ trợ khách hàng và cứu hộ 24/7 bất cứ khi nào bạn cần.",
+    "icon": "Clock4"
+  },
+  {
+    "title": "Thanh toán dễ dàng",
+    "description": "Thanh toán trực tuyến an toàn với nhiều hình thức và xác nhận ngay lập tức.",
+    "icon": "CreditCard"
+  },
+  {
+    "title": "Nhiều điểm giao nhận",
+    "description": "Giao và nhận xe tại hơn 50 địa điểm thuận tiện trên toàn quốc.",
+    "icon": "MapPin"
+  },
+  {
+    "title": "Hỗ trợ tận tâm",
+    "description": "Đội ngũ chuyên viên sẽ giúp bạn chọn được chiếc xe phù hợp nhất với nhu cầu.",
+    "icon": "Headphones"
+  },
+  {
+    "title": "Chất lượng cao cấp",
+    "description": "Tất cả xe đều được bảo dưỡng định kỳ và đạt tiêu chuẩn chất lượng cao.",
+    "icon": "FileBadge"
+  },
+  {
+    "title": "Hơn 100.000 người tin dùng",
+    "description": "Gia nhập cộng đồng khách hàng hài lòng đã tin tưởng Travel Car.",
+    "icon": "Users"
+  },
+  {
+    "title": "Đặt xe ngay lập tức",
+    "description": "Chỉ vài cú nhấp chuột để đặt xe và nhận xác nhận qua email tức thì.",
+    "icon": "Zap"
+  }
+]

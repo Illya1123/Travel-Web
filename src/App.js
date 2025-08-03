@@ -12,6 +12,7 @@ import ForgetPassword from './components/auth/ForgetPassword.jsx'
 import ResetPassword from './components/auth/ResetPassword.jsx'
 
 import Home from './pages/Home/Home.jsx'
+import RentalCar from './pages/RentalCar/Home.jsx'
 import UserProfilePage from './pages/Profile/UserProfilePage.jsx'
 import Detail from './pages/TourDetail/detail.jsx'
 import OneStepCheckout from './pages/Payment/OneStepCheckoutPage.jsx'
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
         children: [
             { path: '/', element: <Home /> },
             { path: '/home', element: <Home /> },
+            { path: '/thue-xe', element: <RentalCar /> },
             { path: '/detail/:slug', element: <Detail /> },
             { path: '/payment-successfully', element: <PaymentSuccess /> },
             { path: '/reset-password/:token', element: <ResetPassword /> },

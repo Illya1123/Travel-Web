@@ -1,4 +1,3 @@
-// api/customer.js
 import axios from 'axios'
 import { baseUrl } from './index'
 

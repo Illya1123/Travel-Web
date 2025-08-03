@@ -71,18 +71,24 @@ const Detail = () => {
     if (!tour) return <Loading />
 
     return (
-        <div className="px-6 py-10">
-            <div className="flex flex-col gap-16 lg:flex-row lg:items-start">
-                <div className="flex flex-col gap-10 lg:w-3/5">
-                    <TourImages tour={tour} />
-                    <TourInfo tour={tour} />
-                </div>
-                <div className="flex flex-col gap-8 lg:w-2/5">
-                    <RelatedTours relatedTours={relatedTours} />
-                    <Comments user={user} tourId={tour._id} />
-                </div>
+ <div className="px-6 py-10">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
+            {/* Cột trái */}
+            <div className="flex flex-col gap-10 lg:w-3/5">
+                <TourImages tour={tour} />
+                <TourInfo tour={tour} />
+            </div>
+
+            {/* Đường kẻ dọc chỉ hiện trên desktop */}
+            <div className="hidden lg:block w-px bg-gray-300 mx-2 self-stretch" />
+
+            {/* Cột phải */}
+            <div className="flex flex-col gap-8 lg:w-2/5">
+                <RelatedTours relatedTours={relatedTours} />
+                <Comments user={user} tourId={tour._id} />
             </div>
         </div>
+    </div>
     )
 }
 

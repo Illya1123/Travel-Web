@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { MdTravelExplore, MdModeOfTravel } from 'react-icons/md'
 import { RiMenuLine } from 'react-icons/ri'
 import { IoMdClose } from 'react-icons/io'
@@ -55,6 +55,19 @@ const Navbar = () => {
     const windowWidth = window.innerWidth
     const isFullScreen = windowWidth < 768
 
+    const logo = useMemo(() => {
+        if (location.pathname === '/thue-xe') {
+            return {
+                icon: <IoCarSportOutline size={36} />,
+                text: 'Travel Car',
+            }
+        }
+        return {
+            icon: <MdTravelExplore size={36} />,
+            text: 'Travel',
+        }
+    }, [location.pathname])
+
     return (
         <div
             className={`fixed top-0 z-50 flex h-[100px] w-full items-center justify-between border-b px-4 transition-all duration-300 md:px-16 ${
@@ -67,8 +80,8 @@ const Navbar = () => {
         >
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 text-2xl font-semibold text-sky-700">
-                <MdTravelExplore size={36} />
-                <span>Travel</span>
+                {logo.icon}
+                <span>{logo.text}</span>
             </Link>
 
             {/* Desktop Nav */}
