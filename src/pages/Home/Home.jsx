@@ -39,15 +39,11 @@ const Home = () => {
         <>
             <section className="home">
                 <div className="overlay"></div>
-                <video
-                    src="/videos/home_video.mp4"
-                    typeof="video/mp4"
-                    loop
-                    autoPlay
-                    muted
-                    preload="auto"
-                    playsInline
-                ></video>
+                <video loop autoPlay muted preload="auto" playsInline>
+                    <source src="/videos/home_video.webm" type="video/webm" />
+                    <source src="/videos/home_video.mp4" type="video/mp4" />
+                    Trình duyệt không hỗ trợ video.
+                </video>
                 <div className="homeContent container">
                     <div className="textDiv mb-10 text-center text-white">
                         <span className="smallText mb-2 block text-sm uppercase tracking-wide">
